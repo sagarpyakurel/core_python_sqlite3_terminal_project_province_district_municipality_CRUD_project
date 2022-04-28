@@ -24,7 +24,8 @@ def main():
                 print("press d >> Return Main Menu")
                 innerchoice = str(input())
                 if(innerchoice == 'a'):
-                    province_name = str(input("provide province name:"))
+                    
+                    province_name = str(input("provide new province name:"))
                     db.insert_province(province_name)
                     print(f'province with name: {province_name} created')
 
@@ -73,17 +74,18 @@ def main():
                 print("press d >> Return Main Menu")
                 innerchoice = str(input())
                 if(innerchoice == 'a'):
+                    print("you can create new district here:")
                     print("select any province from here?")
                     db.fetchallprovince()
                     # all province is printed
                     inputprovince = str(
-                        input(" Provide the province name first:"))
+                        input(" Type the province name first:"))
                     # name inputed
                     provincelist = db.getallprovince()
                     if inputprovince in provincelist:
                         # dictionaryofprovince=db.getprovincedictionary()
                         inputdistrict = str(
-                            input("Provide the district name:"))
+                            input("Type the district name:"))
                         db.fetchprovince_insertdistrict(
                             inputdistrict, inputprovince)
 
@@ -91,7 +93,7 @@ def main():
                         print('your provided district is not valid')
 
                 elif(innerchoice == 'b'):
-                    print("list of district")
+                    print("list of district for updating:")
                     db.fetchalldistrict()
                     inputdistrict = str(input("provide old district name:"))
                     olddistrictlist = db.getalldistrict()
@@ -103,7 +105,7 @@ def main():
                         print('provided district name is not valid')
 
                 elif(innerchoice == 'c'):
-                    print("\nlist of district:")
+                    print("\nlist of district for delete purpose:")
                     db.fetchalldistrict()
                     inputdistrict = str(
                         input("\n provide district name you want to delete: "))
@@ -135,6 +137,7 @@ def main():
                 print("press d >> Return Main Menu")
                 innerchoice = str(input())
                 if(innerchoice == 'a'):
+                    print("you can create new municipality here:")
                     db.fetchalldistrict()
                     # all province is printed
                     inputdistrict = str(
@@ -152,7 +155,7 @@ def main():
                         print('your provided district is not valid')
 
                 elif(innerchoice == 'b'):
-                    print("list of municipality:")
+                    print("list of municipality for updating:")
                     db.fetchallmunicipality()
                     inputmunicipality = str(
                         input("provide old municipality name from the list:>"))
@@ -165,7 +168,7 @@ def main():
                         print('provided municipality 3is not valid')
 
                 elif(innerchoice == 'c'):
-                    print("\nlist of municipality:")
+                    print("\nlist of municipality for deleting:")
                     db.fetchallmunicipality()
                     inputmunicipality = str(
                         input("\n provide municipality name you want to delete: "))
@@ -213,6 +216,7 @@ def main():
 
             elif(choice == 6):
                 break
+
 
             else:
                 print("\n invalid input!! Try again\n")

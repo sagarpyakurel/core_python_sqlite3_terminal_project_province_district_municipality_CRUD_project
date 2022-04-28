@@ -6,23 +6,22 @@ class DBHelper:
     def __init__(self):
 
         self.con = sqlite3.connect('mydatabase.db')
-        print('::::::::>>>>>  database connected successfully  <<<<<<<:::::::')
+        print('\n##### database connected successfully #####')
         cursor = self.con.cursor()
 
         cursor.execute("PRAGMA foreign_keys = ON;")
-
-        query = 'create table if not exists province(p_id integer primary key autoincrement, p_name varchar(100) )'
+        query = 'create table if not exists province(p_id integer primary key autoincrement, p_name varchar(100) unique)'
         cursor.execute(query)
-        print("......... created table Province ............ ")
+        print("******** created table Province ******** ")
 
         query = 'create table if not exists district(d_id integer primary key autoincrement, d_name varchar(100),F_pid,FOREIGN KEY(F_pid) REFERENCES province(p_id) on delete cascade)'
         cursor.execute("PRAGMA foreign_keys=ON")
         cursor.execute(query)
-        print("......... created table District ............ ")
+        print("********* created table District *******")
 
         query = 'create table if not exists municipality(m_id integer primary key autoincrement, m_name varchar(100),F_did,FOREIGN KEY(F_did) REFERENCES district(d_id) on delete cascade)'
         cursor.execute(query)
-        print("......... created table municipality ............ ")
+        print("******** created table municipality *******")
 
 # insert province
     def insert_province(self, province_name):
@@ -34,8 +33,6 @@ class DBHelper:
 
 
 # insert district
-
-
     def fetchprovince_insertdistrict(self, district_name, province_name):
         query = f"select p_id from province where p_name='{province_name}'"
         cursor = self.con.cursor()
@@ -63,7 +60,6 @@ class DBHelper:
         # print('p_id:', province['p_id'])
 
     #  fetch all province
-
     def fetchallprovince(self):
         query = "select * from province"
         cursor = self.con.cursor()
@@ -109,7 +105,6 @@ class DBHelper:
         query = "select * from province"
         cursor = self.con.cursor()
         cursor.execute(query)
-
         # for province in cursor:
         return [provience for provience in cursor]
         # return cursor
@@ -148,8 +143,6 @@ class DBHelper:
 
 
 # update province
-
-
     def update_province(self, oldname, newname):
         query = f"update province set p_name='{newname}' where p_name='{oldname}'"
         # print(query)
