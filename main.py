@@ -7,21 +7,21 @@ def main():
     while True:
         print("\n ")
         print("*********    WELCOME     *********")
-        print("press 1 to for Province operation")
-        print("press 2 for District operation")
-        print("press 3 for  Municipality operation")
-        print("press 4 for get district in the province")
-        print("press 5 for get municipality in the district")
-        print("press 6 for exit")
+        print("press 1 >> Province operation:")
+        print("press 2 >> District operation:")
+        print("press 3 >> Municipality operation:")
+        print("press 4 >> getting district in the province:")
+        print("press 5 >> getting municipality in the district:")
+        print("press 6 >> exit:")
 
         try:
             choice = int(input())
             if(choice == 1):
                 print("\n ########### Province Choice #############")
-                print("press a for CREATE province")
-                print("press b for UPDATE province")
-                print("press c for DELETE province")
-                print("press d for Return Main Menu")
+                print("press a >> CREATE province")
+                print("press b >> UPDATE province")
+                print("press c >> DELETE province")
+                print("press d >> Return Main Menu")
                 innerchoice = str(input())
                 if(innerchoice == 'a'):
                     province_name = str(input("provide province name:"))
@@ -29,7 +29,7 @@ def main():
                     print(f'province with name: {province_name} created')
 
                 elif(innerchoice == 'b'):
-                    print("list of province:")
+                    print("Type the name of provinceyou want to update from the list?")
                     db.fetchallprovince()
                     inputprovince = str(input("provide old province name:"))
                     oldprovincelist = db.getallprovince()
@@ -41,7 +41,7 @@ def main():
                         print('provided province name is not valid')
 
                 elif(innerchoice == 'c'):
-                    print("\nlist of province:")
+                    print("\n From the list type province name you want to delete?")
                     db.fetchallprovince()
                     inputprovince = str(
                         input("\n provide province name you want to delete: "))
@@ -67,16 +67,17 @@ def main():
 
             elif(choice == 2):
                 print("\n ########### District Choice #############")
-                print("press a for CREATE district")
-                print("press b for UPDATE district")
-                print("press c for DELETE district")
-                print("press d for Return Main Menu")
+                print("press a >> CREATE district")
+                print("press b >> UPDATE district")
+                print("press c >> DELETE district")
+                print("press d >> Return Main Menu")
                 innerchoice = str(input())
                 if(innerchoice == 'a'):
+                    print("select any province from here?")
                     db.fetchallprovince()
                     # all province is printed
                     inputprovince = str(
-                        input(" Provide the associated province name:"))
+                        input(" Provide the province name first:"))
                     # name inputed
                     provincelist = db.getallprovince()
                     if inputprovince in provincelist:
@@ -128,16 +129,16 @@ def main():
 
             elif(choice == 3):
                 print("\n ########### Municipality Choice #############")
-                print("press a for CREATE municipality")
-                print("press b for UPDATE municipality")
-                print("press c for DELETE municipality")
-                print("press d for Return Main Menu")
+                print("press a >> CREATE municipality")
+                print("press b >> UPDATE municipality")
+                print("press c >> DELETE municipality")
+                print("press d >> Return Main Menu")
                 innerchoice = str(input())
                 if(innerchoice == 'a'):
                     db.fetchalldistrict()
                     # all province is printed
                     inputdistrict = str(
-                        input(" Provide the associated district:"))
+                        input(" Type district name first:"))
                     # name inputed
                     districtlist = db.getalldistrict()
                     if inputdistrict in districtlist:
@@ -191,7 +192,7 @@ def main():
             elif(choice == 4):
                 print("which province do you want to select?")
                 db.fetchallprovince()
-                inputprovince = str(input(" Provide the name of province whose district are to be listed: "))
+                inputprovince = str(input(" Type province name first: "))
                 provincelist = db.getallprovince()
                 if inputprovince in provincelist:
                     db.listdistrict_by_province(inputprovince)
@@ -202,7 +203,7 @@ def main():
             elif(choice == 5):
                 print("which district do you want to select?")
                 db.fetchalldistrict()
-                inputdistrict = str(input(" Provide the name of district whose municipality are to be listed: "))
+                inputdistrict = str(input(" type any district first:"))
                 districtlist = db.getalldistrict()
                 if inputdistrict in districtlist:
                     db.listmunicipality_by_district(inputdistrict)
